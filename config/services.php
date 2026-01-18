@@ -34,4 +34,11 @@ return [
         'api_key' => env('GOOGLE_MAPS_API_KEY'),
     ],
 
+    'telegram_checks' => [
+        'url' => env('TC_API_URL'),
+        'app_id' => env('TC_APP_ID'),
+        'api_hash' => env('TC_API_HASH'),
+        'session_name' => env('TC_SESSION_NAME'),
+    ],
+
 ];

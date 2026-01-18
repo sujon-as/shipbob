@@ -33,6 +33,15 @@ Route::get('/clear-cache', function () {
     return 'All caches (config, route, view, application) have been cleared!';
 });
 
+Route::get('/queue-table', function () {
+    Artisan::call('queue:table');
+    Artisan::call('migrate', [
+        '--force' => true,
+    ]);
+
+    return 'queue:table & migrate command has been executed!';
+});
+
 Route::group(['middleware' => ['prevent-back-history', 'admin_auth']], function () {
     // admin dashboard
     Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('dashboard');

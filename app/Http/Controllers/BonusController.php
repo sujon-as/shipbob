@@ -112,11 +112,12 @@ class BonusController extends Controller
                 'amount' => $request->amount,
             ]);
 
+            DB::commit();
+
             $notification=array(
                 'message' => 'Successfully a Bonus Reasons has been added',
                 'alert-type' => 'success',
             );
-            DB::commit();
 
             return redirect()->route('bonus.index')->with($notification);
 

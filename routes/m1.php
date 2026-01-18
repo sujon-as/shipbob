@@ -23,6 +23,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TaskAssignController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\TrialTaskAssignController;
 use App\Http\Controllers\TrialTaskController;
 use App\Http\Controllers\UpdateUserController;
@@ -191,9 +192,15 @@ Route::middleware('admin_auth')->group(function () {
         Route::resource('rtt-tasks', RTTTaskController::class);
         Route::resource('rtt-assign-tasks', RTTAssignTaskController::class);
     });
-    
+
     Route::get('/download-database', [SettingController::class, 'downloadDatabase'])->name('admin.download.database');
     // Route::get('/download-database', [SettingController::class, 'downloadDatabaseClaude'])->name('admin.download.database');
+
+    Route::get('/telegram-check', [TelegramController::class, 'index'])->name('telegram.index');
+    Route::get('/telegram-create', [TelegramController::class, 'create'])->name('telegram.create');
+    Route::post('/telegram-check', [TelegramController::class, 'store'])->name('telegram.store');
+    Route::get('/telegram-export', [TelegramController::class, 'export'])->name('telegram.export');
+
 });
 
 Route::middleware('check_site_status')->group(function () {

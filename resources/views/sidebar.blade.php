@@ -534,6 +534,15 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ Request::is('telegram*') ? 'menu-open' : '' }}">
+                    <a href="{{ route('telegram.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Telegram Checker
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-header">PAGE CONTENTS</li>
                 <li class="nav-item {{ Request::is('home-page*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
