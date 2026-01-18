@@ -26,11 +26,6 @@ class CheckTelegramNumber implements ShouldQueue
     public function handle()
     {
         $url = config('services.telegram_checks.url');
-//        $app_id = config('services.telegram_checks.app_id');
-//        $api_hash = config('services.telegram_checks.api_hash');
-//        $session_name = config('services.telegram_checks.session_name');
-
-//        $url = "http://3.108.218.81/check";
 
         $body = [
             "phone_numbers" => [$this->phone],
@@ -61,8 +56,8 @@ class CheckTelegramNumber implements ShouldQueue
                     'exists' => $info['exists'] ? 'yes' : 'no',
                     'has_telegram' => $info['exists'] ? 'yes' : 'no',
                     'api_response' => json_encode($data),
-                    'created_by' => user()->id,
-                    'updated_by' => user()->id,
+//                    'created_by' => user()->id,
+//                    'updated_by' => user()->id,
                 ]);
             }
         }

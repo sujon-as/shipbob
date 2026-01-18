@@ -52,7 +52,7 @@
   	$(document).ready(function(){
   		let id;
   		var productTable = $('#product-table').DataTable({
-		        searching: true,
+		        // searching: true,
 		        processing: true,
 		        serverSide: true,
 		        ordering: false,

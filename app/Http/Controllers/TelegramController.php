@@ -17,8 +17,7 @@ class TelegramController extends Controller
         {
             if($request->ajax()){
 
-                $data = TelegramCheck::where('has_telegram', 'yes')
-                    ->latest()
+                $data = TelegramCheck::latest()
                     ->select('*')
                     ->get();
 
