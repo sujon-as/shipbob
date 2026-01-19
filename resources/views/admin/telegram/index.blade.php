@@ -48,7 +48,10 @@
 
 @push('scripts')
 
-  <script>
+{{--    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>--}}
+    <script src="{{asset('custom/pusher.min.js')}}"></script>
+
+    <script>
   	$(document).ready(function(){
   		let id;
   		var productTable = $('#product-table').DataTable({
@@ -65,13 +68,28 @@
 		        columns: [
 		            {data: 'phone', name: 'phone'},
                     {data: 'has_telegram', name: 'has_telegram'},
-		        ]
+		        ],
         });
 
         // 🔥 Auto refresh every 5 seconds
-        setInterval(function(){
+        // setInterval(function(){
+        //     productTable.ajax.reload(null, false);
+        // }, 2000);
+
+        // ======= PUSHER REALTIME =======
+        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+            cluster: "{{ env('PUSHER_APP_CLUSTER') }}"
+        });
+
+        var channel = pusher.subscribe("telegram");
+
+        let reloadTimer;  // For debounce
+
+        channel.bind("telegram.updated", function(data) {
+            console.log("New data:", data);
             productTable.ajax.reload(null, false);
-        }, 2000);
+
+        });
 
   	});
   </script>
