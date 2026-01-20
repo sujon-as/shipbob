@@ -78,15 +78,13 @@
 
         // ======= PUSHER REALTIME =======
         var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
-            cluster: "{{ env('PUSHER_APP_CLUSTER') }}"
+            cluster: "{{ env('PUSHER_APP_CLUSTER') }}",
+            encrypted: true
         });
 
         var channel = pusher.subscribe("telegram");
 
-        let reloadTimer;  // For debounce
-
         channel.bind("telegram.updated", function(data) {
-            console.log("New data:", data);
             productTable.ajax.reload(null, false);
 
         });
